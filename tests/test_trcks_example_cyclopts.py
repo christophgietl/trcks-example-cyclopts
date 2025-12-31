@@ -1,4 +1,5 @@
 import enum
+import sys
 import typing
 from pathlib import Path
 
@@ -136,14 +137,24 @@ def test_app_fails_on_input_directory(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
     input_path.mkdir()
+    expected_exit_code = (
+        ExitCode.NOT_ENOUGH_PERMISSIONS
+        if sys.platform == "win32"
+        else ExitCode.PATH_IS_A_DIRECTORY
+    )
+    expected_error_message = (
+        "Error: Not enough permissions for input file\n"
+        if sys.platform == "win32"
+        else "Error: Input path is a directory\n"
+    )
 
     with pytest.raises(SystemExit) as exc_info:
         app([str(input_path), str(output_path)])
     out, err = capsys.readouterr()
 
-    assert exc_info.value.code == ExitCode.PATH_IS_A_DIRECTORY
+    assert exc_info.value.code == expected_exit_code
     assert out == ""
-    assert err == "Error: Input path is a directory\n"
+    assert err == expected_error_message
     assert input_path.is_dir()
     assert not output_path.exists()
 
@@ -153,14 +164,24 @@ def test_app_fails_on_output_directory(
 ) -> None:
     _ = input_path.write_text(INPUT_TEXT)
     output_path.mkdir()
+    expected_exit_code = (
+        ExitCode.NOT_ENOUGH_PERMISSIONS
+        if sys.platform == "win32"
+        else ExitCode.PATH_IS_A_DIRECTORY
+    )
+    expected_error_message = (
+        "Error: Not enough permissions for output file\n"
+        if sys.platform == "win32"
+        else "Error: Output path is a directory\n"
+    )
 
     with pytest.raises(SystemExit) as exc_info:
         app([str(input_path), str(output_path)])
     out, err = capsys.readouterr()
 
-    assert exc_info.value.code == ExitCode.PATH_IS_A_DIRECTORY
+    assert exc_info.value.code == expected_exit_code
     assert out == ""
-    assert err == "Error: Output path is a directory\n"
+    assert err == expected_error_message
     assert input_path.read_text() == INPUT_TEXT
     assert output_path.is_dir()
 

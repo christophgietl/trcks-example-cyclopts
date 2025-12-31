@@ -1,0 +1,59 @@
+[build-system]
+build-backend = "uv_build"
+requires = ["uv_build>=0.9.18,<0.10.0"]
+
+[dependency-groups]
+dev = [
+    "pre-commit==4.5.1",
+    "pyright[nodejs]==1.1.407",
+    "pytest==9.0.2",
+    "pytest-cov==7.0.0",
+    "trcks[pyright]==0.4.0",
+]
+
+[project]
+dependencies = [
+    "cyclopts==4.4.3",
+    "trcks==0.4.0",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+name = "trcks-example-cyclopts"
+requires-python = "==3.14.*"
+version = "1.2.3"
+
+[project.scripts]
+tec = "trcks_example_cyclopts:app"
+
+[tool.pyright]
+deprecateTypingAliases = true
+reportCallInDefaultInitializer = true
+reportImplicitOverride = true
+reportImplicitStringConcatenation = true
+reportImportCycles = true
+reportMissingSuperCall = true
+reportPropertyTypeMismatch = true
+reportUninitializedInstanceVariable = true
+reportUnnecessaryTypeIgnoreComment = true
+reportUnusedCallResult = true
+typeCheckingMode = "strict"
+
+[tool.pytest.ini_options]
+addopts = "--cov=trcks_example_cyclopts --cov-fail-under=100 --cov-report=term-missing"
+
+[tool.ruff.lint]
+ignore = [
+    "COM812", # "may cause conflicts when used with the formatter"
+    "D",
+]
+select = ["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.uv]
+add-bounds = "exact"
+required-version = ">=0.9.18,<0.10.0"

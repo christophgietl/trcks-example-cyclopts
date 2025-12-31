@@ -186,6 +186,10 @@ def test_app_fails_on_output_directory(
     assert output_path.is_dir()
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason="Permission chmod 0o000 unreliable on Windows",
+)
 def test_app_fails_on_input_permission_error(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
@@ -205,6 +209,10 @@ def test_app_fails_on_input_permission_error(
     assert not output_path.exists()
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason="Permission mkdir 0o500 unreliable on Windows",
+)
 def test_app_fails_on_output_permission_error(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:

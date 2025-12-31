@@ -38,7 +38,9 @@ def _to_positive_exit_code(lit: _service.FailureLiteral) -> _PositiveExitCode:
             return 1
         case "Input file not found" | "Output file not found":
             return 2
-        case "Input path is a directory" | "Output path is a directory":
+        case (
+            "Input path is a directory" | "Output path is a directory"
+        ):  # pragma: no cover # Windows reports missing permissions in these cases.
             return 3
         case (
             "Not enough permissions for input file"

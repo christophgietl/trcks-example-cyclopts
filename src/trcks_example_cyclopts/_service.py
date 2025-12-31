@@ -33,7 +33,9 @@ def _extract(input_: Path) -> Result[_ExtractFailureLiteral, str]:
             s = f.read()
     except FileNotFoundError:
         return "failure", "Input file not found"
-    except IsADirectoryError:
+    except (
+        IsADirectoryError
+    ):  # pragma: no cover # Python for Windows raises a PermissionError instead.
         return "failure", "Input path is a directory"
     except PermissionError:
         return "failure", "Not enough permissions for input file"
@@ -50,7 +52,9 @@ def _load(output: Path) -> Callable[[str], _LoadResult]:
                 _ = f.write(s)
         except FileNotFoundError:
             return "failure", "Output file not found"
-        except IsADirectoryError:
+        except (
+            IsADirectoryError
+        ):  # pragma: no cover # Python for Windows raises a PermissionError instead.
             return "failure", "Output path is a directory"
         except PermissionError:
             return "failure", "Not enough permissions for output file"

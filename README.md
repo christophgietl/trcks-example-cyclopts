@@ -2,7 +2,7 @@
 
 This example CLI application shows you how to use
 the [trcks](https://pypi.org/project/trcks/) library
-for railway-oriented programming.
+for type-safe railway-oriented programming in Python.
 
 ## How It Works
 

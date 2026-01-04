@@ -3,7 +3,6 @@ from typing import TYPE_CHECKING, Literal
 from trcks.oop import Wrapper
 
 if TYPE_CHECKING:
-    from collections.abc import Callable
     from pathlib import Path
 
     from trcks import Result
@@ -22,12 +21,14 @@ type _LoadFailureLiteral = Literal[
     "Output path is a directory",
 ]
 
+type _ExtractResult = Result[_ExtractFailureLiteral, str]
+
 type _LoadResult = Result[_LoadFailureLiteral, None]
 
 type FailureLiteral = _ExtractFailureLiteral | _LoadFailureLiteral
 
 
-def _extract(input_: Path) -> Result[_ExtractFailureLiteral, str]:
+def _extract(input_: Path) -> _ExtractResult:
     try:
         with input_.open("r") as f:
             s = f.read()
@@ -45,25 +46,22 @@ def _extract(input_: Path) -> Result[_ExtractFailureLiteral, str]:
         return "success", s
 
 
-def _load(output: Path) -> Callable[[str], _LoadResult]:
-    def inner(s: str) -> _LoadResult:
-        try:
-            with output.open("w") as f:
-                _ = f.write(s)
-        except FileNotFoundError:
-            return "failure", "Output file not found"
-        except (
-            IsADirectoryError
-        ):  # pragma: no cover # Python for Windows raises a PermissionError instead.
-            return "failure", "Output path is a directory"
-        except PermissionError:
-            return "failure", "Not enough permissions for output file"
-        except ValueError:
-            return "failure", "Encoding error in output file"
-        else:
-            return "success", None
-
-    return inner
+def _load(s: str, output: Path) -> _LoadResult:
+    try:
+        with output.open("w") as f:
+            _ = f.write(s)
+    except FileNotFoundError:
+        return "failure", "Output file not found"
+    except (
+        IsADirectoryError
+    ):  # pragma: no cover # Python for Windows raises a PermissionError instead.
+        return "failure", "Output path is a directory"
+    except PermissionError:
+        return "failure", "Not enough permissions for output file"
+    except ValueError:
+        return "failure", "Encoding error in output file"
+    else:
+        return "success", None
 
 
 def _transform(s: str) -> str:
@@ -71,10 +69,13 @@ def _transform(s: str) -> str:
 
 
 def extract_transform_load(input_: Path, output: Path) -> Result[FailureLiteral, None]:
+    def load(s: str) -> _LoadResult:
+        return _load(s, output)
+
     return (
         Wrapper(input_)
         .map_to_result(_extract)
         .map_success(_transform)
-        .map_success_to_result(_load(output))
+        .map_success_to_result(load)
         .core
     )

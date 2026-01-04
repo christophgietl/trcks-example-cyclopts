@@ -1,5 +1,5 @@
 import sys
-from pathlib import Path  # noqa: TC003 # needed by cyclopts
+from pathlib import Path
 from typing import Literal, assert_never
 
 import cyclopts

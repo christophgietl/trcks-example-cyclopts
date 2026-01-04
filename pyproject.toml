@@ -48,6 +48,9 @@ ignore = [
 ]
 select = ["ALL"]
 
+[tool.ruff.lint.flake8-type-checking]
+runtime-evaluated-decorators = ["cyclopts.App.default"]
+
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101"]
 

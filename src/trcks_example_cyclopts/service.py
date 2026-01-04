@@ -1,3 +1,4 @@
+import functools
 from typing import TYPE_CHECKING, Literal
 
 from trcks.oop import Wrapper
@@ -69,13 +70,10 @@ def _transform(s: str) -> str:
 
 
 def extract_transform_load(input_: Path, output: Path) -> Result[FailureLiteral, None]:
-    def load(s: str) -> _LoadResult:
-        return _load(s, output)
-
     return (
         Wrapper(input_)
         .map_to_result(_extract)
         .map_success(_transform)
-        .map_success_to_result(load)
+        .map_success_to_result(functools.partial(_load, output=output))
         .core
     )

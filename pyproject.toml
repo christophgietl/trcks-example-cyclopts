@@ -23,7 +23,7 @@ requires-python = "==3.14.*"
 version = "1.2.3"
 
 [project.scripts]
-tec = "trcks_example_cyclopts:app"
+tec = "trcks_example_cyclopts.user_interface:app"
 
 [tool.pyright]
 deprecateTypingAliases = true

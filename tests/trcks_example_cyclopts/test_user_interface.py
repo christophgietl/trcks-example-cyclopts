@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from trcks_example_cyclopts import app
+from trcks_example_cyclopts.user_interface import app
 
 INPUT_TEXT = "Hello, World!"
 

@@ -6,7 +6,7 @@ for type-safe railway-oriented programming in Python.
 
 ## How It Works
 
-The [trcks_example_cyclopts._service](src/trcks_example_cyclopts/_service.py)
+The [trcks_example_cyclopts.service](src/trcks_example_cyclopts/service.py)
 module contains three private functions.
 The `_extract` and `_load` functions return `trcks.Result` objects.
 The `_transform` function returns a `str` object.
@@ -14,8 +14,8 @@ This module also contains the public function `extract_transform_load`, which
 composes the private functions using `trcks.oop.Wrapper` and
 returns a `trcks.Result` object.
 
-The [trcks_example_cyclopts](src/trcks_example_cyclopts/__init__.py) module
-contains the [cyclopts](https://pypi.org/project/cyclopts/) application `app`
+The [trcks_example_cyclopts.user_interface](src/trcks_example_cyclopts/user_interface.py)
+module contains the [cyclopts](https://pypi.org/project/cyclopts/) application `app`
 and its default action handler.
 The action handler calls the public function `extract_transform_load` and
 returns an appropriate exit code based on the result.

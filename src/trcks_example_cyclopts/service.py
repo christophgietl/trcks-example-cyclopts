@@ -47,7 +47,7 @@ def _extract(input_: Path) -> _ExtractResult:
         return "success", s
 
 
-def _load(s: str, output: Path) -> _LoadResult:
+def _load(s: str, *, output: Path) -> _LoadResult:
     try:
         with output.open("w") as f:
             _ = f.write(s)

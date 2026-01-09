@@ -14,7 +14,7 @@ dev = [
 [project]
 dependencies = [
     "cyclopts==4.4.4",
-    "trcks==0.4.0",
+    "trcks==0.4.1",
 ]
 license = "MIT"
 license-files = ["LICEN[CS]E*"]

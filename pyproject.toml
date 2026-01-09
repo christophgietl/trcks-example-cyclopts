@@ -8,7 +8,7 @@ dev = [
     "pyright[nodejs]==1.1.408",
     "pytest==9.0.2",
     "pytest-cov==7.0.0",
-    "trcks[pyright]==0.4.0",
+    "trcks[pyright]==0.4.1",
 ]
 
 [project]

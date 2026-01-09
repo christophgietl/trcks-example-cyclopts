@@ -1,5 +1,5 @@
 name: Run tests and type checks
-description: Executes import-linter, the test suite and static type checkers.
+description: Executes the test suite and a static type checker.
 inputs:
   locked:
     default: "true"

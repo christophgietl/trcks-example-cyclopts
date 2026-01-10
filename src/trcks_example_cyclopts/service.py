@@ -1,4 +1,5 @@
 import functools
+import logging
 from typing import TYPE_CHECKING, Literal
 
 from trcks.oop import Wrapper
@@ -7,6 +8,8 @@ if TYPE_CHECKING:
     from pathlib import Path
 
     from trcks import Result
+
+_logger = logging.getLogger(__name__)
 
 type _ReadFailureLiteral = Literal[
     "Encoding error in input file",
@@ -73,7 +76,9 @@ def read_transform_write(input_: Path, output: Path) -> Result[FailureLiteral, N
     return (
         Wrapper(input_)
         .map_to_result(_read)
+        .tap_success(lambda s: _logger.debug("Transforming '%s' ...", s))
         .map_success(_transform)
+        .tap_success(lambda s: _logger.debug("Transformed into '%s'.", s))
         .map_success_to_result(functools.partial(_write, output=output))
         .core
     )

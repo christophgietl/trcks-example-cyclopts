@@ -15,13 +15,13 @@ app = cyclopts.App()
 
 @app.default
 def _default(input_: Path, output: Path) -> _ExitCode:  # pyright: ignore [reportUnusedFunction]
-    """Read data from input file, transform it and write to output file.
+    """Read data from input file, transform it and write it to output file.
 
     Args:
-        input_: Path to input file.
-        output: Path to output file.
+        input_: File to read from.
+        output: File to write to.
     """
-    result = service.extract_transform_load(input_, output)
+    result = service.read_transform_write(input_, output)
     match result:
         case "failure", literal:
             print(f"Error: {literal}", file=sys.stderr)  # noqa: T201 # needed for CLI output

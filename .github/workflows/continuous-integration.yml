@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/set-up-uv
-      - run: uv build
+      - run: uv build --verbose
   lint-and-test:
     strategy:
       fail-fast: false

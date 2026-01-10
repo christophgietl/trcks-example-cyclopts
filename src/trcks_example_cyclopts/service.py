@@ -8,28 +8,28 @@ if TYPE_CHECKING:
 
     from trcks import Result
 
-type _ExtractFailureLiteral = Literal[
+type _ReadFailureLiteral = Literal[
     "Encoding error in input file",
     "Input file not found",
     "Input path is a directory",
     "Not enough permissions for input file",
 ]
 
-type _LoadFailureLiteral = Literal[
+type _WriteFailureLiteral = Literal[
     "Encoding error in output file",
     "Not enough permissions for output file",
     "Output file not found",
     "Output path is a directory",
 ]
 
-type _ExtractResult = Result[_ExtractFailureLiteral, str]
+type _ReadResult = Result[_ReadFailureLiteral, str]
 
-type _LoadResult = Result[_LoadFailureLiteral, None]
+type _WriteResult = Result[_WriteFailureLiteral, None]
 
-type FailureLiteral = _ExtractFailureLiteral | _LoadFailureLiteral
+type FailureLiteral = _ReadFailureLiteral | _WriteFailureLiteral
 
 
-def _extract(input_: Path) -> _ExtractResult:
+def _read(input_: Path) -> _ReadResult:
     try:
         with input_.open("r") as f:
             s = f.read()
@@ -47,7 +47,11 @@ def _extract(input_: Path) -> _ExtractResult:
         return "success", s
 
 
-def _load(s: str, *, output: Path) -> _LoadResult:
+def _transform(s: str) -> str:
+    return f"Length: {len(s)}"
+
+
+def _write(s: str, *, output: Path) -> _WriteResult:
     try:
         with output.open("w") as f:
             _ = f.write(s)
@@ -65,15 +69,11 @@ def _load(s: str, *, output: Path) -> _LoadResult:
         return "success", None
 
 
-def _transform(s: str) -> str:
-    return f"Length: {len(s)}"
-
-
-def extract_transform_load(input_: Path, output: Path) -> Result[FailureLiteral, None]:
+def read_transform_write(input_: Path, output: Path) -> Result[FailureLiteral, None]:
     return (
         Wrapper(input_)
-        .map_to_result(_extract)
+        .map_to_result(_read)
         .map_success(_transform)
-        .map_success_to_result(functools.partial(_load, output=output))
+        .map_success_to_result(functools.partial(_write, output=output))
         .core
     )

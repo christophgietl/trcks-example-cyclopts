@@ -76,9 +76,9 @@ def read_transform_write(input_: Path, output: Path) -> Result[FailureLiteral, N
     return (
         Wrapper(input_)
         .map_to_result(_read)
-        .tap_success(lambda s: _logger.debug("Transforming '%s' ...", s))
+        .tap_success(lambda s: _logger.debug("Transforming %r ...", s))
         .map_success(_transform)
-        .tap_success(lambda s: _logger.debug("Transformed into '%s'.", s))
+        .tap_success(lambda s: _logger.debug("Transformed into %r.", s))
         .map_success_to_result(functools.partial(_write, output=output))
         .core
     )

@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "flit_core.buildapi"
-requires = ["flit_core>=3.11,<4"] # flit_core 3.11 supports project.license-files.
+requires = ["flit_core~=3.11"] # flit_core 3.11 supports project.license-files.
 
 [dependency-groups]
 dev = [
@@ -20,7 +20,7 @@ description = "Example CLI application that uses the trcks library for type-safe
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
 name = "trcks-example-cyclopts"
-requires-python = "==3.14.*"
+requires-python = "~=3.14.0"
 version = "1.2.3"
 
 [project.scripts]

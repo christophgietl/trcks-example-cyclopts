@@ -1,6 +1,6 @@
 import functools
 import logging
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING, Final, Literal
 
 from trcks.oop import Wrapper
 
@@ -9,7 +9,6 @@ if TYPE_CHECKING:
 
     from trcks import Result
 
-_logger = logging.getLogger(__name__)
 
 type _ReadFailureLiteral = Literal[
     "Encoding error in input file",
@@ -17,7 +16,6 @@ type _ReadFailureLiteral = Literal[
     "Input path is a directory",
     "Not enough permissions for input file",
 ]
-
 type _WriteFailureLiteral = Literal[
     "Encoding error in output file",
     "Not enough permissions for output file",
@@ -26,10 +24,11 @@ type _WriteFailureLiteral = Literal[
 ]
 
 type _ReadResult = Result[_ReadFailureLiteral, str]
-
 type _WriteResult = Result[_WriteFailureLiteral, None]
 
 type FailureLiteral = _ReadFailureLiteral | _WriteFailureLiteral
+
+_logger: Final = logging.getLogger(__name__)
 
 
 def _read(input_: Path) -> _ReadResult:

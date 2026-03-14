@@ -1,8 +1,9 @@
 # PyCharm-generated files
-/.idea/
+.idea/
 
 # pytest-generated files
 .coverage
+.pytest_cache/
 
 # Python-generated files
 __pycache__/
@@ -12,5 +13,8 @@ dist/
 wheels/
 *.egg-info
 
+# ruff-generated files
+.ruff_cache/
+
 # Virtual environments
-.venv
+.venv/

@@ -7,6 +7,7 @@ The following section describes how to set up and use a development environment.
 
 `trcks-example-cyclopts` uses the following developer tools:
 
+- [mypy](https://mypy.readthedocs.io/) for static type checking
 - [pre-commit](https://pre-commit.com) for managing pre-commit hooks
   (particularly for code formatting and linting)
 - [pyright](https://microsoft.github.io/pyright/) for static type checking
@@ -35,6 +36,12 @@ Run unit tests and doctests:
 
 ```shell
 uv run pytest
+```
+
+Run static type checks:
+
+```shell
+uv run mypy
 ```
 
 Run static type checks:

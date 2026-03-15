@@ -6,6 +6,7 @@ requires = ["uv_build~=0.11.0"] # should match tool.uv.required-version
 dev = [
     "mypy==2.1.0",
     "pre-commit==4.6.0",
+    "pyrefly==1.1.1",
     "pytest==9.1.0",
     "pytest-cov==7.1.0",
     "trcks[mypy]", # check project.dependencies for version
@@ -36,6 +37,9 @@ files = "."
 strict = true
 warn_incomplete_stub = true
 warn_unreachable = true
+
+[tool.pyrefly]
+enabled-ignores = ["pyrefly"]
 
 [tool.pytest.ini_options]
 addopts = "--cov=trcks_example_cyclopts --cov-fail-under=100 --cov-report=term-missing --import-mode=importlib"

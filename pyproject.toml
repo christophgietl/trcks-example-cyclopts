@@ -11,6 +11,7 @@ dev = [
     "pytest==9.0.2",
     "pytest-cov==7.1.0",
     "trcks[mypy,pyright]", # check project.dependencies for version
+    "ty==0.0.23",
 ]
 
 [project]
@@ -75,6 +76,12 @@ runtime-evaluated-decorators = ["cyclopts.App.default"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.ty.analysis]
+respect-type-ignore-comments = false
+
+[tool.ty.terminal]
+error-on-warning = true
 
 [tool.uv]
 add-bounds = "exact"

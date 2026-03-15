@@ -29,7 +29,7 @@ def _default(input_: Path, output: Path) -> _ExitCode:  # pyright: ignore [repor
         case "success", _:
             return 0
         case _:  # pragma: no cover
-            assert_never(result)  # type: ignore[arg-type]  # pyrefly: ignore[bad-argument-type]
+            assert_never(result)  # type: ignore[arg-type]  # pyrefly: ignore[bad-argument-type]    # ty: ignore[type-assertion-failure]
 
 
 def _to_positive_exit_code(lit: service.FailureLiteral) -> _PositiveExitCode:

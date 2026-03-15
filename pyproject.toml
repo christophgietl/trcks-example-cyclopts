@@ -10,6 +10,7 @@ dev = [
     "pytest==9.1.1",
     "pytest-cov==7.1.0",
     "trcks[pyrefly]", # check project.dependencies for version
+    "ty==0.0.76",
 ]
 
 [project]
@@ -52,6 +53,9 @@ runtime-evaluated-decorators = ["cyclopts.App.default"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.ty.analysis]
+respect-type-ignore-comments = false
 
 [tool.uv]
 add-bounds = "exact"

@@ -28,7 +28,7 @@ def _default(*inputs: Path, output: Path | None = None) -> _ExitCode:
         case "success", _:
             return 0
         case _ as result:  # pragma: no cover
-            assert_never(result)  # pyrefly: ignore[bad-argument-type]
+            assert_never(result)  # pyrefly: ignore[bad-argument-type]    # ty: ignore[type-assertion-failure]
 
 
 def _to_positive_exit_code(reason: service.FileErrorReason) -> _PositiveExitCode:

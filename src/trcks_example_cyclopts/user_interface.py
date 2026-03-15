@@ -25,11 +25,11 @@ def _default(input_: Path, output: Path) -> _ExitCode:  # pyright: ignore [repor
     match result:
         case "failure", literal:
             print(f"Error: {literal}", file=sys.stderr)  # noqa: T201 # needed for CLI output
-            return _to_positive_exit_code(literal)
+            return _to_positive_exit_code(literal)  # type: ignore[arg-type]
         case "success", _:
             return 0
         case _:  # pragma: no cover
-            assert_never(result)
+            assert_never(result)  # type: ignore[arg-type]
 
 
 def _to_positive_exit_code(lit: service.FailureLiteral) -> _PositiveExitCode:

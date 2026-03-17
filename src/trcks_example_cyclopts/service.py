@@ -22,16 +22,12 @@ type _WriteFailureLiteral = Literal[
     "Output file not found",
     "Output path is a directory",
 ]
-
-type _ReadResult = Result[_ReadFailureLiteral, str]
-type _WriteResult = Result[_WriteFailureLiteral, None]
-
 type FailureLiteral = _ReadFailureLiteral | _WriteFailureLiteral
 
 _logger: Final = logging.getLogger(__name__)
 
 
-def _read(input_: Path) -> _ReadResult:
+def _read(input_: Path) -> Result[_ReadFailureLiteral, str]:
     try:
         with input_.open("r") as f:
             s = f.read()
@@ -53,7 +49,7 @@ def _transform(s: str) -> str:
     return f"Length: {len(s)}"
 
 
-def _write(s: str, *, output: Path) -> _WriteResult:
+def _write(s: str, *, output: Path) -> Result[_WriteFailureLiteral, None]:
     try:
         with output.open("w") as f:
             _ = f.write(s)

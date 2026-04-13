@@ -1,6 +1,6 @@
 [build-system]
-build-backend = "flit_core.buildapi"
-requires = ["flit_core~=3.11"] # flit_core 3.11 supports project.license-files.
+build-backend = "uv_build"
+requires = ["uv_build>=0.10, <0.12"] # should match tool.uv.required-version
 
 [dependency-groups]
 dev = [
@@ -44,8 +44,8 @@ addopts = "--cov=trcks_example_cyclopts --cov-fail-under=100 --cov-report=term-m
 
 [tool.ruff.lint]
 ignore = [
-    "COM812",   # "may cause conflicts when used with the formatter"
-    "D1",       # would complain about missing docstrings
+    "COM812", # "may cause conflicts when used with the formatter"
+    "D1", # would complain about missing docstrings
 ]
 select = ["ALL"]
 

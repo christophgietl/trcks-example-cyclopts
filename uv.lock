@@ -347,6 +347,7 @@ pyright = [
 
 [[package]]
 name = "trcks-example-cyclopts"
+version = "1.2.3"
 source = { editable = "." }
 dependencies = [
     { name = "cyclopts" },

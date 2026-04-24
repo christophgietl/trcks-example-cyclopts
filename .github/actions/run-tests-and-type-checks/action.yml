@@ -12,7 +12,10 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: uv sync --all-extras${{ fromJSON(inputs.locked) && ' --locked' || '' }} --resolution=${{ inputs.resolution-strategy }}
+    - env:
+        LOCKED: ${{ fromJSON(inputs.locked) && '--locked' || '' }}
+        RESOLUTION_STRATEGY: ${{ inputs.resolution-strategy }}
+      run: uv sync --all-extras ${LOCKED} --resolution=${RESOLUTION_STRATEGY}
       shell: bash
     - run: uv run --no-sync pyright
       shell: bash

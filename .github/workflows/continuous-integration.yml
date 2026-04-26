@@ -34,4 +34,5 @@ jobs:
         with:
           cache-key-suffix: ${{ matrix.os }}
       - run: uv run --no-sync pre-commit run --all-files --show-diff-on-failure
-      - uses: ./.github/actions/run-tests-and-type-checks
+      - run: uv run --no-sync pyright
+      - run: uv run --no-sync pytest

@@ -4,7 +4,7 @@ requires = ["uv_build>=0.10, <0.12"] # should match tool.uv.required-version
 
 [dependency-groups]
 dev = [
-    "pre-commit==4.5.1",
+    "pre-commit==4.6.0",
     "pyright[nodejs]==1.1.408",
     "pytest==9.0.3",
     "pytest-cov==7.1.0",

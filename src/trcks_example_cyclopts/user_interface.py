@@ -14,7 +14,7 @@ app = cyclopts.App()
 
 
 @app.default
-def _default(input_: Path, output: Path) -> _ExitCode:  # pyright: ignore [reportUnusedFunction]
+def _default(input_: Path, output: Path) -> _ExitCode:
     """Read data from input file, transform it and write it to output file.
 
     Args:

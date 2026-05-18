@@ -21,19 +21,18 @@ def _default(input_: Path, output: Path) -> _ExitCode:
         input_: File to read from.
         output: File to write to.
     """
-    result = service.read_transform_write(input_, output)
-    match result:
+    match service.read_transform_write(input_, output):
         case "failure", literal:
             print(f"Error: {literal}", file=sys.stderr)  # noqa: T201 # needed for CLI output
             return _to_positive_exit_code(literal)
         case "success", _:
             return 0
-        case _:  # pragma: no cover
+        case _ as result:  # pragma: no cover
             assert_never(result)
 
 
-def _to_positive_exit_code(lit: service.FailureLiteral) -> _PositiveExitCode:
-    match lit:
+def _to_positive_exit_code(literal: service.FailureLiteral) -> _PositiveExitCode:
+    match literal:
         case "Encoding error in input file" | "Encoding error in output file":
             return 1
         case "Input file not found" | "Output file not found":
@@ -48,4 +47,4 @@ def _to_positive_exit_code(lit: service.FailureLiteral) -> _PositiveExitCode:
         ):
             return 4
         case _:  # pragma: no cover
-            assert_never(lit)
+            assert_never(literal)

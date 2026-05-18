@@ -52,7 +52,7 @@ def _transform(s: str) -> str:
 def _write(s: str, *, output: Path) -> Result[_WriteFailureLiteral, None]:
     try:
         with output.open("w") as f:
-            _ = f.write(s)
+            f.write(s)
     except FileNotFoundError:
         return "failure", "Output file not found"
     except (

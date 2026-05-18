@@ -6,10 +6,9 @@ requires = ["uv_build~=0.11.0"] # should match tool.uv.required-version
 dev = [
     "mypy==2.0.0",
     "pre-commit==4.6.0",
-    "pyright[nodejs]==1.1.409",
     "pytest==9.0.3",
     "pytest-cov==7.1.0",
-    "trcks[mypy,pyright]", # check project.dependencies for version
+    "trcks[mypy]", # check project.dependencies for version
 ]
 
 [project]
@@ -37,20 +36,6 @@ files = "."
 strict = true
 warn_incomplete_stub = true
 warn_unreachable = true
-
-[tool.pyright]
-deprecateTypingAliases = true
-enableTypeIgnoreComments = false
-reportCallInDefaultInitializer = true
-reportImplicitOverride = true
-reportImplicitStringConcatenation = true
-reportImportCycles = true
-reportMissingSuperCall = true
-reportPropertyTypeMismatch = true
-reportUninitializedInstanceVariable = true
-reportUnnecessaryTypeIgnoreComment = true
-reportUnusedCallResult = true
-typeCheckingMode = "strict"
 
 [tool.pytest.ini_options]
 addopts = "--cov=trcks_example_cyclopts --cov-fail-under=100 --cov-report=term-missing --import-mode=importlib"

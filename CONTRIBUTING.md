@@ -10,7 +10,6 @@ The following section describes how to set up and use a development environment.
 - [mypy](https://mypy.readthedocs.io/) for static type checking
 - [pre-commit](https://pre-commit.com) for managing pre-commit hooks
   (particularly for code formatting and linting)
-- [pyright](https://microsoft.github.io/pyright/) for static type checking
 - [pytest](https://pytest.org) for unit testing and doctests
 - [uv](https://docs.astral.sh/uv/) for dependency management and packaging
 
@@ -42,12 +41,6 @@ Run static type checks:
 
 ```shell
 uv run mypy
-```
-
-Run static type checks:
-
-```shell
-uv run pyright
 ```
 
 Run pre-commit hooks:

@@ -46,7 +46,7 @@ def output_path_with_patched_open_method(
             raise ValueError(msg)
         return original_open(self, mode, *args, **kwargs)
 
-    monkeypatch.setattr(Path, "open", patched_open)  # pyright: ignore [reportUnknownArgumentType]
+    monkeypatch.setattr(Path, "open", patched_open)
 
     return output_path
 

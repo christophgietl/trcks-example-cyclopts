@@ -54,7 +54,7 @@ def output_path_with_patched_open_method(
 def test_app_succeeds(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
-    _ = input_path.write_text(INPUT_TEXT)
+    input_path.write_text(INPUT_TEXT)
 
     with pytest.raises(SystemExit) as exc_info:
         app([str(input_path), str(output_path)])
@@ -71,7 +71,7 @@ def test_app_fails_on_input_encoding_error(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
     input_bytes = b"\x80\x81\x82\x83"  # invalid UTF-8
-    _ = input_path.write_bytes(input_bytes)
+    input_path.write_bytes(input_bytes)
 
     with pytest.raises(SystemExit) as exc_info:
         app([str(input_path), str(output_path)])
@@ -89,7 +89,7 @@ def test_app_fails_on_output_encoding_error(
     input_path: Path,
     output_path_with_patched_open_method: Path,
 ) -> None:
-    _ = input_path.write_text(INPUT_TEXT)
+    input_path.write_text(INPUT_TEXT)
 
     with pytest.raises(SystemExit) as exc_info:
         app([str(input_path), str(output_path_with_patched_open_method)])
@@ -119,7 +119,7 @@ def test_app_fails_on_non_existent_input_file(
 def test_app_fails_on_non_existent_output_directory(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
-    _ = input_path.write_text(INPUT_TEXT)
+    input_path.write_text(INPUT_TEXT)
     output_file = output_path / "file"
 
     with pytest.raises(SystemExit) as exc_info:
@@ -162,7 +162,7 @@ def test_app_fails_on_input_directory(
 def test_app_fails_on_output_directory(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
-    _ = input_path.write_text(INPUT_TEXT)
+    input_path.write_text(INPUT_TEXT)
     output_path.mkdir()
     expected_exit_code = (
         ExitCode.NOT_ENOUGH_PERMISSIONS
@@ -193,7 +193,7 @@ def test_app_fails_on_output_directory(
 def test_app_fails_on_input_permission_error(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
-    _ = input_path.write_text(INPUT_TEXT)
+    input_path.write_text(INPUT_TEXT)
     old_mode = input_path.stat().st_mode
     input_path.chmod(0o000)
 
@@ -216,7 +216,7 @@ def test_app_fails_on_input_permission_error(
 def test_app_fails_on_output_permission_error(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
-    _ = input_path.write_text(INPUT_TEXT)
+    input_path.write_text(INPUT_TEXT)
     output_path.mkdir(mode=0o500)
     output_file = output_path / "file"
 

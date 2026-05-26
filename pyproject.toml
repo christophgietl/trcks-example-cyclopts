@@ -14,7 +14,7 @@ dev = [
 [project]
 dependencies = [
     "cyclopts==4.14.0",
-    "trcks==0.4.3",
+    "trcks==0.4.4",
 ]
 description = "Example CLI application that uses the trcks library for type-safe railway-oriented programming in Python 🚂🐍"
 license = "MIT"

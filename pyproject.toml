@@ -38,7 +38,8 @@ warn_incomplete_stub = true
 warn_unreachable = true
 
 [tool.pytest.ini_options]
-addopts = "--cov=trcks_example_cyclopts --cov-fail-under=100 --cov-report=term-missing --import-mode=importlib -W error"
+addopts = "--cov=trcks_example_cyclopts --cov-fail-under=100 --cov-report=term-missing --import-mode=importlib"
+filterwarnings = ["error"]
 
 [tool.ruff.lint]
 ignore = [

@@ -14,7 +14,7 @@ dev = [
 [project]
 dependencies = [
     "cyclopts==4.16.1",
-    "trcks==0.4.5",
+    "trcks==0.5.0",
 ]
 description = "Example CLI application that uses the trcks library for type-safe railway-oriented programming in Python 🚂🐍"
 license = "MIT"
@@ -59,5 +59,4 @@ convention = "google"
 
 [tool.uv]
 add-bounds = "exact"
-exclude-newer = "P7D"
 required-version = "~=0.11.0"

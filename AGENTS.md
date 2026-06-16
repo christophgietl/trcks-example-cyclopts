@@ -46,6 +46,6 @@ uv run rtw --help
 
 ## Documentation requirements
 
-- Update `AGENTS.md` update on architecture and tooling changes.
-- Update `CONTRIBUTING.md` update on tooling changes.
-- Update `README.md` update on feature and UI changes.
+- Update `AGENTS.md` on architecture and tooling changes.
+- Update `CONTRIBUTING.md` on tooling changes.
+- Update `README.md` on feature and UI changes.

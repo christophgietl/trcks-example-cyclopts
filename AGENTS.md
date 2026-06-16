@@ -16,6 +16,7 @@
 - Sort functions alphabetically within each module.
 - Sort classes alphabetically within each module.
 - Sort methods alphabetically within each class.
+- Do not use `from __future__ import annotations` (not needed in Python 3.14+).
 
 ## Development tools
 

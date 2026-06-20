@@ -19,10 +19,9 @@ module contains the [cyclopts](https://pypi.org/project/cyclopts/) application `
 and its default action handler.
 The action handler calls the public function `read_transform_write` and
 returns an appropriate exit code based on the result.
-It accepts zero or more positional `input` arguments and
-an optional `--output` option;
-when `--output` is omitted, the transformed output is written to stdout.
-When `--output` is provided, each transformed result is **appended** to the output
+It accepts zero or more positional `input` arguments and an optional `--output`
+option. If `--output` is omitted, the transformed output is written to stdout.
+If `--output` is provided, the transformed results are **appended** to the output
 file, so repeated invocations with the same `--output` path accumulate results.
 
 ## Quick Start

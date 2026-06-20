@@ -89,6 +89,18 @@ def test_app_succeeds_with_multiple_inputs(
     )
 
 
+def test_app_succeeds_with_no_inputs(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    with pytest.raises(SystemExit) as exc_info:
+        app([])
+    out, err = capsys.readouterr()
+
+    assert exc_info.value.code == ExitCode.SUCCESS
+    assert out == ""
+    assert err == ""
+
+
 def test_app_writes_to_stdout_by_default(
     capsys: pytest.CaptureFixture[str], input_path: Path
 ) -> None:

@@ -22,6 +22,8 @@ returns an appropriate exit code based on the result.
 It accepts zero or more positional `input` arguments and
 an optional `--output` option;
 when `--output` is omitted, the transformed output is written to stdout.
+When `--output` is provided, each transformed result is **appended** to the output
+file, so repeated invocations with the same `--output` path accumulate results.
 
 ## Quick Start
 

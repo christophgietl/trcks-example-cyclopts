@@ -14,25 +14,25 @@ app = cyclopts.App()
 
 
 @app.default
-def _default(input_: Path, output: Path) -> _ExitCode:
-    """Read data from input file, transform it and write it to output file.
+def _default(*inputs: Path, output: Path | None = None) -> _ExitCode:
+    """Read data from input files, transform it and write it to output file.
 
     Args:
-        input_: File to read from.
-        output: File to write to.
+        inputs: Files to read from.
+        output: File to write to. Defaults to stdout.
     """
-    match service.read_transform_write(input_, output):
-        case "failure", literal:
-            print(f"Error: {literal}", file=sys.stderr)  # noqa: T201 # needed for CLI output
-            return _to_positive_exit_code(literal)
+    match service.read_transform_write(inputs, output):
+        case "failure", service.FileError(reason, path):
+            print(f"Error: {reason}, Path: {path}", file=sys.stderr)  # noqa: T201 # needed for CLI output
+            return _to_positive_exit_code(reason)
         case "success", _:
             return 0
         case _ as result:  # pragma: no cover
             assert_never(result)
 
 
-def _to_positive_exit_code(literal: service.FailureLiteral) -> _PositiveExitCode:
-    match literal:
+def _to_positive_exit_code(reason: service.FileErrorReason) -> _PositiveExitCode:
+    match reason:
         case "Encoding error in input file" | "Encoding error in output file":
             return 1
         case "Input file not found" | "Output file not found":
@@ -47,4 +47,4 @@ def _to_positive_exit_code(literal: service.FailureLiteral) -> _PositiveExitCode
         ):
             return 4
         case _:  # pragma: no cover
-            assert_never(literal)
+            assert_never(reason)

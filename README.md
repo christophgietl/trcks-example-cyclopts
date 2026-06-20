@@ -11,14 +11,18 @@ module contains three private functions.
 The `_read` and `_write` functions return `trcks.Result` objects.
 The `_transform` function returns a `str` object.
 This module also contains the public function `read_transform_write`, which
-composes the private functions using `trcks.oop.Wrapper` and
-returns a `trcks.Result` object.
+composes the private functions using `trcks.oop.TupleWrapper` and
+returns a `trcks.ResultTuple` object.
 
 The [trcks_example_cyclopts.user_interface](src/trcks_example_cyclopts/user_interface.py)
 module contains the [cyclopts](https://pypi.org/project/cyclopts/) application `app`
 and its default action handler.
 The action handler calls the public function `read_transform_write` and
 returns an appropriate exit code based on the result.
+It accepts zero or more positional `input` arguments and an optional `--output`
+option. If `--output` is omitted, the transformed output is written to stdout.
+If `--output` is provided, the transformed results are **appended** to the output
+file, so repeated invocations with the same `--output` path accumulate results.
 
 ## Quick Start
 

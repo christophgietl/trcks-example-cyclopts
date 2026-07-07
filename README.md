@@ -6,7 +6,7 @@ for type-safe railway-oriented programming in Python.
 
 ## How It Works
 
-The [trcks_example_cyclopts.service](src/trcks_example_cyclopts/service.py)
+The [rtw.service](src/rtw/service.py)
 module contains three private functions.
 The `_read` and `_write` functions return `trcks.Result` objects.
 The `_transform` function returns a `str` object.
@@ -14,7 +14,7 @@ This module also contains the public function `read_transform_write`, which
 composes the private functions using `trcks.oop.TupleWrapper` and
 returns a `trcks.ResultTuple` object.
 
-The [trcks_example_cyclopts.user_interface](src/trcks_example_cyclopts/user_interface.py)
+The [rtw.user_interface](src/rtw/user_interface.py)
 module contains the [cyclopts](https://pypi.org/project/cyclopts/) application `app`
 and its default action handler.
 The action handler calls the public function `read_transform_write` and

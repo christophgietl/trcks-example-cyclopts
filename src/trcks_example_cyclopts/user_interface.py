@@ -22,11 +22,15 @@ def _default(*inputs: Path, output: Path | None = None) -> _ExitCode:
         output: File to write to. Defaults to stdout.
     """
     match service.read_transform_write(inputs, output):
-        case "failure", file_error:
-            print(  # noqa: T201 # needed for CLI output
-                f"Error: {file_error.reason}, Path: {file_error.path}", file=sys.stderr
-            )
-            return _to_positive_exit_code(file_error.reason)
+        case "failure", failure:
+            match failure:
+                case service.FileError(reason=reason, path=path):
+                    print(  # noqa: T201 # needed for CLI output
+                        f"Error: {reason}, Path: {path}", file=sys.stderr
+                    )
+                    return _to_positive_exit_code(reason)
+                case _ as result:  # pragma: no cover
+                    assert_never(result)
         case "success", _:
             return 0
         case _ as result:  # pragma: no cover

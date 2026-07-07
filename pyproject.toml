@@ -12,6 +12,7 @@ dev = [
 ]
 
 [project]
+classifiers = ["Private :: Do Not Upload"]
 dependencies = [
     "cyclopts==4.20.0",
     "trcks==0.6.1",

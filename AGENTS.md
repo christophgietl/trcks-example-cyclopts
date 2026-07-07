@@ -7,8 +7,8 @@
 
 ## Architecture decisions
 
-- `trcks_example_cyclopts.service` contains I/O functions returning `trcks.Result`.
-- `trcks_example_cyclopts.user_interface` contains the CLI entry point `app` and
+- `rtw.service` contains I/O functions returning `trcks.Result`.
+- `rtw.user_interface` contains the CLI entry point `app` and
   its action handlers; handlers call I/O functions and return exit codes.
 
 ## Code style
@@ -37,10 +37,10 @@ uv run rtw --help
 
 ## Testing strategy
 
-- Invoke `trcks_example_cyclopts.user_interface.app` directly.
+- Invoke `rtw.user_interface.app` directly.
 - Dedicate a test case to every exit code and failure branch.
 - Assert exit code, stdout, stderr and filesystem state after every call.
-- Do not mock `trcks_example_cyclopts.service` functions.
+- Do not mock `rtw.service` functions.
 - Use `monkeypatch` to simulate errors (e.g. raise `ValueError` from `Path.open`).
 - 100% coverage required; mark unreachable lines with `# pragma: no cover`
   (not needed for `if TYPE_CHECKING`).

@@ -4,7 +4,7 @@ from typing import Literal, assert_never
 
 import cyclopts
 
-from trcks_example_cyclopts import service
+from rtw import service
 
 type _ExitCode = Literal[0] | _PositiveExitCode
 type _PositiveExitCode = Literal[1, 2, 3, 4]

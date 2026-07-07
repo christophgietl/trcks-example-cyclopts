@@ -428,21 +428,7 @@ wheels = [
 ]
 
 [[package]]
-name = "trcks"
-version = "0.6.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/4e/c0/0f47fe7ee36918f2bbe8a5adb2d72b33eb57684a42f1013739f16e73d5b0/trcks-0.6.1.tar.gz", hash = "sha256:e3af71f6d20dc658ce5fe5ba2fd88171ceb629771851479172a357a7157169e0", size = 57838, upload-time = "2026-06-28T06:26:10.801Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/a7/9c/e69be3d011ecf334d1798f901afd8d685101a6bb28c0f1c9b9f8ac851688/trcks-0.6.1-py3-none-any.whl", hash = "sha256:9b801c655ae9aad1ee68470710545dd1938b993cde9ae0303687657d3447a77f", size = 68532, upload-time = "2026-06-28T06:26:09.785Z" },
-]
-
-[package.optional-dependencies]
-mypy = [
-    { name = "mypy" },
-]
-
-[[package]]
-name = "trcks-example-cyclopts"
+name = "rtw"
 version = "1.2.3"
 source = { editable = "." }
 dependencies = [
@@ -472,6 +458,20 @@ dev = [
     { name = "pytest", specifier = "==9.1.1" },
     { name = "pytest-cov", specifier = "==7.1.0" },
     { name = "trcks", extras = ["mypy"] },
+]
+
+[[package]]
+name = "trcks"
+version = "0.6.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/4e/c0/0f47fe7ee36918f2bbe8a5adb2d72b33eb57684a42f1013739f16e73d5b0/trcks-0.6.1.tar.gz", hash = "sha256:e3af71f6d20dc658ce5fe5ba2fd88171ceb629771851479172a357a7157169e0", size = 57838, upload-time = "2026-06-28T06:26:10.801Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a7/9c/e69be3d011ecf334d1798f901afd8d685101a6bb28c0f1c9b9f8ac851688/trcks-0.6.1-py3-none-any.whl", hash = "sha256:9b801c655ae9aad1ee68470710545dd1938b993cde9ae0303687657d3447a77f", size = 68532, upload-time = "2026-06-28T06:26:09.785Z" },
+]
+
+[package.optional-dependencies]
+mypy = [
+    { name = "mypy" },
 ]
 
 [[package]]

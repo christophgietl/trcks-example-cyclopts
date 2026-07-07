@@ -19,12 +19,12 @@ dependencies = [
 description = "Example CLI application that uses the trcks library for type-safe railway-oriented programming in Python 🚂🐍"
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
-name = "trcks-example-cyclopts"
+name = "rtw"
 requires-python = "~=3.14.0"
 version = "1.2.3"
 
 [project.scripts]
-rtw = "trcks_example_cyclopts.user_interface:app"
+rtw = "rtw.user_interface:app"
 
 [tool.mypy]
 disallow_any_decorated = true
@@ -38,7 +38,7 @@ warn_incomplete_stub = true
 warn_unreachable = true
 
 [tool.pytest.ini_options]
-addopts = "--cov=trcks_example_cyclopts --cov-fail-under=100 --cov-report=term-missing --import-mode=importlib"
+addopts = "--cov=rtw --cov-fail-under=100 --cov-report=term-missing --import-mode=importlib"
 filterwarnings = ["error"]
 
 [tool.ruff.lint]

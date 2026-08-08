@@ -1,6 +1,5 @@
 import enum
 import sys
-import typing
 from pathlib import Path
 
 import pytest
@@ -39,14 +38,25 @@ def output_path_with_patched_open_method(
 ) -> Path:
     original_open = Path.open
 
-    @typing.no_type_check
-    def patched_open(
-        self: Path, mode: str = "r", *args: object, **kwargs: object
+    def patched_open(  # noqa: PLR0913, PLR0917
+        self: Path,
+        mode: str = "r",
+        buffering: int = -1,
+        encoding: str | None = None,
+        errors: str | None = None,
+        newline: str | None = None,
     ) -> object:
         if self == output_path and mode == "a":
             msg = "some message"
             raise ValueError(msg)
-        return original_open(self, mode, *args, **kwargs)
+        return original_open(
+            self=self,
+            mode=mode,
+            buffering=buffering,
+            encoding=encoding,
+            errors=errors,
+            newline=newline,
+        )
 
     monkeypatch.setattr(Path, "open", patched_open)
 

@@ -4,11 +4,11 @@ requires = ["uv_build<1"] # check tool.uv.required-version for tighter version c
 
 [dependency-groups]
 dev = [
-    "mypy==2.3.0",
     "pre-commit==4.6.1",
+    "pyrefly==1.2.0",
     "pytest==9.1.1",
     "pytest-cov==7.1.0",
-    "trcks[mypy]", # check project.dependencies for version
+    "trcks", # check project.dependencies for version
 ]
 
 [project]
@@ -27,16 +27,9 @@ version = "1.2.3"
 [project.scripts]
 rtw = "rtw.user_interface:app"
 
-[tool.mypy]
-disallow_any_decorated = true
-disallow_any_explicit = true
-disallow_any_unimported = true
-disallow_redefinition = true
-disallow_untyped_globals = true
-files = "."
-strict = true
-warn_incomplete_stub = true
-warn_unreachable = true
+[tool.pyrefly]
+enabled-ignores = ["pyrefly"]
+preset = "all"
 
 [tool.pytest.ini_options]
 addopts = "--cov=rtw --cov-fail-under=100 --cov-report=term-missing --import-mode=importlib"

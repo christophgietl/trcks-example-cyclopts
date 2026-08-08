@@ -26,7 +26,7 @@
 # Run linting and code formatting:
 uv run pre-commit run --all-files
 # Check types:
-uv run mypy
+uv run pyrefly
 # Run tests:
 uv run pytest
 # Build distribution package:

@@ -6,4 +6,4 @@ description: Guide for reviewing code in this repository. Use this when asked to
 # Code review
 
 Do not warn about failures of linters, type checkers or tests.
-This is the job of [the CI pipeline](../../workflows/continuous-integration.yml).
+This is the job of [the CI pipeline](../../../.github/workflows/continuous-integration.yml).

@@ -1,6 +1,5 @@
 import enum
 import sys
-import typing
 from pathlib import Path
 
 import pytest
@@ -39,12 +38,25 @@ def output_path_with_patched_open_method(
 ) -> Path:
     original_open = Path.open
 
-    @typing.no_type_check
-    def patched_open(self, mode="r", *args, **kwargs):  # noqa: ANN001, ANN002, ANN003, ANN202
+    def patched_open(  # noqa: PLR0913, PLR0917
+        self: Path,
+        mode: str = "r",
+        buffering: int = -1,
+        encoding: str | None = None,
+        errors: str | None = None,
+        newline: str | None = None,
+    ) -> object:
         if self == output_path and mode == "a":
             msg = "some message"
             raise ValueError(msg)
-        return original_open(self, mode, *args, **kwargs)
+        return original_open(
+            self=self,
+            mode=mode,
+            buffering=buffering,
+            encoding=encoding,
+            errors=errors,
+            newline=newline,
+        )
 
     monkeypatch.setattr(Path, "open", patched_open)
 
@@ -54,7 +66,7 @@ def output_path_with_patched_open_method(
 def test_app_succeeds(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
-    input_path.write_text(INPUT_TEXT)
+    _ = input_path.write_text(INPUT_TEXT)
 
     with pytest.raises(SystemExit) as exc_info:
         app([str(input_path), "--output", str(output_path)])
@@ -74,8 +86,8 @@ def test_app_succeeds_with_multiple_inputs(
     input_path_2 = tmp_path / "input_2"
     input_text_1 = "Hello"
     input_text_2 = "Hello, World!"
-    input_path_1.write_text(input_text_1)
-    input_path_2.write_text(input_text_2)
+    _ = input_path_1.write_text(input_text_1)
+    _ = input_path_2.write_text(input_text_2)
 
     with pytest.raises(SystemExit) as exc_info:
         app([str(input_path_1), str(input_path_2), "--output", str(output_path)])
@@ -104,7 +116,7 @@ def test_app_succeeds_with_no_inputs(
 def test_app_writes_to_stdout_by_default(
     capsys: pytest.CaptureFixture[str], input_path: Path
 ) -> None:
-    input_path.write_text(INPUT_TEXT)
+    _ = input_path.write_text(INPUT_TEXT)
 
     with pytest.raises(SystemExit) as exc_info:
         app([str(input_path)])
@@ -123,8 +135,8 @@ def test_app_writes_multiple_results_to_stdout_by_default(
     input_path_2 = tmp_path / "input_2"
     input_text_1 = "Hello"
     input_text_2 = "Hello, World!"
-    input_path_1.write_text(input_text_1)
-    input_path_2.write_text(input_text_2)
+    _ = input_path_1.write_text(input_text_1)
+    _ = input_path_2.write_text(input_text_2)
 
     with pytest.raises(SystemExit) as exc_info:
         app([str(input_path_1), str(input_path_2)])
@@ -139,7 +151,7 @@ def test_app_fails_on_input_encoding_error(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
     input_bytes = b"\x80\x81\x82\x83"  # invalid UTF-8
-    input_path.write_bytes(input_bytes)
+    _ = input_path.write_bytes(input_bytes)
 
     with pytest.raises(SystemExit) as exc_info:
         app([str(input_path), "--output", str(output_path)])
@@ -157,7 +169,7 @@ def test_app_fails_on_output_encoding_error(
     input_path: Path,
     output_path_with_patched_open_method: Path,
 ) -> None:
-    input_path.write_text(INPUT_TEXT)
+    _ = input_path.write_text(INPUT_TEXT)
     expected_error_message = (
         "Error: Encoding error in output file, "
         f"Path: {output_path_with_patched_open_method}\n"
@@ -191,7 +203,7 @@ def test_app_fails_on_non_existent_input_file(
 def test_app_fails_on_non_existent_output_directory(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
-    input_path.write_text(INPUT_TEXT)
+    _ = input_path.write_text(INPUT_TEXT)
     output_file = output_path / "file"
 
     with pytest.raises(SystemExit) as exc_info:
@@ -234,7 +246,7 @@ def test_app_fails_on_input_directory(
 def test_app_fails_on_output_directory(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
-    input_path.write_text(INPUT_TEXT)
+    _ = input_path.write_text(INPUT_TEXT)
     output_path.mkdir()
     if sys.platform == "win32":
         expected_exit_code = ExitCode.NOT_ENOUGH_PERMISSIONS
@@ -265,7 +277,7 @@ def test_app_fails_on_output_directory(
 def test_app_fails_on_input_permission_error(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
-    input_path.write_text(INPUT_TEXT)
+    _ = input_path.write_text(INPUT_TEXT)
     old_mode = input_path.stat().st_mode
     input_path.chmod(0o000)
 
@@ -288,7 +300,7 @@ def test_app_fails_on_input_permission_error(
 def test_app_fails_on_output_permission_error(
     capsys: pytest.CaptureFixture[str], input_path: Path, output_path: Path
 ) -> None:
-    input_path.write_text(INPUT_TEXT)
+    _ = input_path.write_text(INPUT_TEXT)
     output_path.mkdir(mode=0o500)
     output_file = output_path / "file"
     expected_error_message = (
@@ -311,7 +323,7 @@ def test_app_fails_when_second_input_file_is_not_found(
 ) -> None:
     input_path_1 = tmp_path / "input_1"
     input_path_2 = tmp_path / "input_2"
-    input_path_1.write_text(INPUT_TEXT)
+    _ = input_path_1.write_text(INPUT_TEXT)
     assert not input_path_2.exists()
 
     with pytest.raises(SystemExit) as exc_info:

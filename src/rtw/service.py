@@ -77,7 +77,7 @@ def _write(s: str, *, output: Path | None) -> Result[_WriteFileError, None]:
 
     try:
         with output.open("a") as f:
-            f.write(s + "\n")
+            _ = f.write(s + "\n")
     except FileNotFoundError:
         return "failure", _WriteFileError(reason="Output file not found", path=output)
     except (

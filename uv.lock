@@ -339,7 +339,7 @@ dev = [
     { name = "pyrefly" },
     { name = "pytest" },
     { name = "pytest-cov" },
-    { name = "trcks" },
+    { name = "trcks", extra = ["pyrefly"] },
 ]
 
 [package.metadata]
@@ -354,7 +354,7 @@ dev = [
     { name = "pyrefly", specifier = "==1.2.0" },
     { name = "pytest", specifier = "==9.1.1" },
     { name = "pytest-cov", specifier = "==7.1.0" },
-    { name = "trcks" },
+    { name = "trcks", extras = ["pyrefly"] },
 ]
 
 [[package]]
@@ -364,6 +364,11 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/1a/38/b4b7f549e3b16aa0abfa9c365427b4e0c1a827bdc5747d144c5e7d7aa83d/trcks-0.6.2.tar.gz", hash = "sha256:6cbb9ac9fef76b52f1dba3c858735621045735d875335d22899075b90f8a7a1e", size = 57325, upload-time = "2026-07-15T21:44:57.526Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a9/13/f44c8bae3d22459b7205938fda3b8a24c70a5726f2b76fdac39a2970d660/trcks-0.6.2-py3-none-any.whl", hash = "sha256:0cc3e770e904aae4e689a275bdacfd4244fdf436a3ccefec2bd1fb1d7a16f1f5", size = 68024, upload-time = "2026-07-15T21:44:56.418Z" },
+]
+
+[package.optional-dependencies]
+pyrefly = [
+    { name = "pyrefly" },
 ]
 
 [[package]]

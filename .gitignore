@@ -16,5 +16,8 @@ wheels/
 # ruff-generated files
 .ruff_cache/
 
+# rumdl-generated files
+.rumdl_cache/
+
 # Virtual environments
 .venv/

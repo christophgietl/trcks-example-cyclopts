@@ -107,6 +107,6 @@ def read_transform_write(
         .tap_successes(lambda s: _logger.debug("Transforming %r ...", s))
         .map_successes(_transform)
         .tap_successes(lambda s: _logger.debug("Transformed into %r.", s))
-        .map_successes_to_result(lambda s: _write(s, output=output))
+        .map_successes_to_result(_write, output=output)
         .core
     )

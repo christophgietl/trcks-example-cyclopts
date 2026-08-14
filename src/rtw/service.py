@@ -70,7 +70,7 @@ def _transform(s: str) -> str:
     return f"Length: {len(s)}"
 
 
-def _write(s: str, *, output: Path | None) -> Result[_WriteFileError, None]:
+def _write(s: str, output: Path | None) -> Result[_WriteFileError, None]:
     if output is None:
         print(s)  # noqa: T201 # needed for CLI output
         return "success", None

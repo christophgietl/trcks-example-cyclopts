@@ -14,9 +14,10 @@ The following section describes how to set up and use a development environment.
 - [pytest](https://pytest.org) for unit testing and doctests
 - [uv](https://docs.astral.sh/uv/) for dependency management and packaging
 
-Agent skills are installed as symlinks with POSIX-style targets, so this
-development environment is POSIX-only (macOS and Linux); it is not supported
-on Windows.
+> [!WARNING]
+> Agent skills are installed as symlinks with POSIX-style targets, so this
+> development environment is POSIX-only (macOS and Linux); it is not supported
+> on Windows.
 
 ### Setup
 

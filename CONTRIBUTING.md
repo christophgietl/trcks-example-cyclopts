@@ -6,9 +6,12 @@ The following section describes how to set up and use a development environment.
 ## Development environment
 
 > [!WARNING]
-> Agent skills are installed as symlinks with POSIX-style targets, so this
-> development environment is POSIX-only (macOS and Linux); it is not supported
-> on Windows.
+> The symlink [.agents/skills/trcks](.agents/skills/trcks) points to the POSIX
+> path
+> `../../.venv/lib/python3.14/site-packages/trcks/.agents/skills/trcks`.
+> Windows users might need to reinstall the `trcks` library skill as described in
+> [the section "Development tools" in `AGENTS.md`](AGENTS.md#development-tools)
+> in order to get the appropriate path for their system.
 
 `trcks-example-cyclopts` uses the following developer tools:
 

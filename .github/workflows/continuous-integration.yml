@@ -34,5 +34,7 @@ jobs:
         with:
           cache-key-suffix: ${{ matrix.os }}
       - run: uv run --no-sync pre-commit run --all-files --show-diff-on-failure
+        env:
+          SKIP: ${{ runner.os == 'Windows' && 'check-symlinks' || '' }}
       - run: uv run --no-sync pyrefly check
       - run: uv run --no-sync pytest

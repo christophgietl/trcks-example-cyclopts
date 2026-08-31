@@ -7,9 +7,10 @@ The following section describes how to set up and use a development environment.
 
 `trcks-example-cyclopts` uses the following developer tools:
 
-- [pyrefly](https://pyrefly.org) for static type checking
+- [Library Skills](https://library-skills.io) for managing library skills for coding agents
 - [pre-commit](https://pre-commit.com) for managing pre-commit hooks
   (particularly for code formatting and linting)
+- [pyrefly](https://pyrefly.org) for static type checking
 - [pytest](https://pytest.org) for unit testing and doctests
 - [uv](https://docs.astral.sh/uv/) for dependency management and packaging
 

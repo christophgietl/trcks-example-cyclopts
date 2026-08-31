@@ -33,6 +33,11 @@ jobs:
       - uses: christophgietl/uv-actions/set-up-pre-commit@83513e97a94eb488fb9b2500d4585f65e19eab4a # 2026.7.21.12
         with:
           cache-key-suffix: ${{ matrix.os }}
-      - run: uv run --no-sync pre-commit run --all-files --show-diff-on-failure
+      - env:
+          # The agent skills installed via `library-skills` are symlinks with
+          # POSIX-style targets, so this agent setup is POSIX-only and the
+          # check-symlinks and destroyed-symlinks hooks cannot pass on Windows.
+          SKIP: ${{ runner.os == 'Windows' && 'check-symlinks,destroyed-symlinks' || '' }}
+        run: uv run --no-sync pre-commit run --all-files --show-diff-on-failure
       - run: uv run --no-sync pyrefly check
       - run: uv run --no-sync pytest

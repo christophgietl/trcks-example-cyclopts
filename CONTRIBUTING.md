@@ -5,11 +5,19 @@ The following section describes how to set up and use a development environment.
 
 ## Development environment
 
+> [!WARNING]
+> The symlink `.agents/skills/trcks` points to the POSIX path
+> `../../.venv/lib/python3.14/site-packages/trcks/.agents/skills/trcks`.
+> Windows users might need to reinstall the `trcks` library skill as described in
+> [the section "Development tools" in `AGENTS.md`](AGENTS.md#development-tools)
+> in order to get the appropriate path for their system.
+
 `trcks-example-cyclopts` uses the following developer tools:
 
-- [pyrefly](https://pyrefly.org) for static type checking
+- [Library Skills](https://library-skills.io) for managing library skills for coding agents
 - [pre-commit](https://pre-commit.com) for managing pre-commit hooks
   (particularly for code formatting and linting)
+- [pyrefly](https://pyrefly.org) for static type checking
 - [pytest](https://pytest.org) for unit testing and doctests
 - [uv](https://docs.astral.sh/uv/) for dependency management and packaging
 

@@ -33,6 +33,8 @@ uv run pytest
 uv build
 # Run the example application:
 uv run rtw --help
+# Install the trcks library skill for coding agents:
+uv run library-skills install --skill trcks --yes
 ```
 
 ## Testing strategy

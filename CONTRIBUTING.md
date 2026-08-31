@@ -5,6 +5,11 @@ The following section describes how to set up and use a development environment.
 
 ## Development environment
 
+> [!WARNING]
+> Agent skills are installed as symlinks with POSIX-style targets, so this
+> development environment is POSIX-only (macOS and Linux); it is not supported
+> on Windows.
+
 `trcks-example-cyclopts` uses the following developer tools:
 
 - [Library Skills](https://library-skills.io) for managing library skills for coding agents
@@ -13,11 +18,6 @@ The following section describes how to set up and use a development environment.
 - [pyrefly](https://pyrefly.org) for static type checking
 - [pytest](https://pytest.org) for unit testing and doctests
 - [uv](https://docs.astral.sh/uv/) for dependency management and packaging
-
-> [!WARNING]
-> Agent skills are installed as symlinks with POSIX-style targets, so this
-> development environment is POSIX-only (macOS and Linux); it is not supported
-> on Windows.
 
 ### Setup
 

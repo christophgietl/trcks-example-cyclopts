@@ -29,7 +29,7 @@ def _default(*inputs: Path, output: Path | None = None) -> _ExitCode:
             return _to_positive_exit_code(file_error.reason)
         case "success", _:
             return 0
-        case _ as result:  # pragma: no cover
+        case result:  # pragma: no cover
             assert_never(result)
 
 

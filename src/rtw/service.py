@@ -1,5 +1,6 @@
 import logging
 from dataclasses import dataclass
+from functools import partial
 from typing import TYPE_CHECKING, Final, Literal
 
 from trcks.oop import TupleWrapper
@@ -104,9 +105,9 @@ def read_transform_write(
     return (
         TupleWrapper(inputs)
         .map_to_result(_read)
-        .tap_successes(lambda s: _logger.debug("Transforming %r ...", s))
+        .tap_successes(partial(_logger.debug, "Transforming %r ..."))
         .map_successes(_transform)
-        .tap_successes(lambda s: _logger.debug("Transformed into %r.", s))
+        .tap_successes(partial(_logger.debug, "Transformed into %r."))
         .map_successes_to_result(_write, output=output)
         .core
     )

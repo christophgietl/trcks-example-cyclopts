@@ -10,7 +10,7 @@ dev = [
     "pytest==9.1.1",
     "pytest-cov==7.1.0",
     "trcks[pyrefly]", # check project.dependencies for version
-    "ty==0.0.76",
+    "ty==0.0.89",
 ]
 
 [project]

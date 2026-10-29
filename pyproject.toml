@@ -15,7 +15,7 @@ dev = [
 [project]
 classifiers = ["Private :: Do Not Upload"]
 dependencies = [
-    "cyclopts==5.2.0",
+    "cyclopts==5.3.0",
     "trcks==0.9.1",
 ]
 description = "Example CLI application that uses the trcks library for type-safe railway-oriented programming in Python 🚂🐍"

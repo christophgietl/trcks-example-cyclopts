@@ -7,7 +7,7 @@ The following section describes how to set up and use a development environment.
 
 > [!WARNING]
 > The symlink `.agents/skills/trcks` points to the POSIX path
-> `../../.venv/lib/python3.14/site-packages/trcks/.agents/skills/trcks`.
+> `../../.venv/lib/python3.15/site-packages/trcks/.agents/skills/trcks`.
 > Windows users might need to reinstall the `trcks` library skill as described in
 > [the section "Development tools" in `AGENTS.md`](AGENTS.md#development-tools)
 > in order to get the appropriate path for their system.

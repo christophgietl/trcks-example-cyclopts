@@ -22,7 +22,7 @@ description = "Example CLI application that uses the trcks library for type-safe
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
 name = "rtw"
-requires-python = "~=3.14.0"
+requires-python = "~=3.15.0"
 version = "1.2.3"
 
 [project.scripts]

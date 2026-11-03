@@ -7,7 +7,7 @@ dev = [
     "library-skills==0.0.19",
     "pre-commit==4.7.0",
     "pyrefly==1.4.0",
-    "pytest==9.1.1",
+    "pytest==9.2.0",
     "pytest-cov==7.1.0",
     "trcks[pyrefly]", # check project.dependencies for version
 ]
@@ -15,7 +15,7 @@ dev = [
 [project]
 classifiers = ["Private :: Do Not Upload"]
 dependencies = [
-    "cyclopts==5.3.1",
+    "cyclopts==5.3.2",
     "trcks==0.9.1",
 ]
 description = "Example CLI application that uses the trcks library for type-safe railway-oriented programming in Python 🚂🐍"

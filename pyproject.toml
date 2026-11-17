@@ -4,7 +4,7 @@ requires = ["uv_build<1"] # check tool.uv.required-version for tighter version c
 
 [dependency-groups]
 dev = [
-    "library-skills==0.0.19",
+    "library-skills==0.0.20",
     "pre-commit==4.7.0",
     "pyrefly==1.4.1",
     "pytest==9.2.0",

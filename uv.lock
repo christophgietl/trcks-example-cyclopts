@@ -101,7 +101,7 @@ wheels = [
 
 [[package]]
 name = "cyclopts"
-version = "5.4.2"
+version = "5.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "attrs" },
@@ -109,9 +109,9 @@ dependencies = [
     { name = "rich" },
     { name = "rich-rst" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/49/a2/34a66cdd2c2a5ffcfb15c195091bb944cf25bc8c1c0faeb4726ecb906c18/cyclopts-5.4.2.tar.gz", hash = "sha256:f0374ffae32bba180db7eae1d17a97a1bcd656455a3b7436f2133c4132f7c5b5", size = 257872, upload-time = "2026-11-12T13:25:49.482Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b4/2c/b6d63f4963883f9c5d6faa8153dd401a410ee72d6caf0ba1a74ce5fcbaac/cyclopts-5.5.0.tar.gz", hash = "sha256:995f779ef1cabdae1fd5fd4a92d303dc80a060c11c205137b77fb75bec079237", size = 257871, upload-time = "2026-11-14T02:13:36.903Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/68/03/9347dfa31741d38a02f365a5cca5b76fd1288e8f9ee0fa8120eb301e9876/cyclopts-5.4.2-py3-none-any.whl", hash = "sha256:f8a07bf41d14447960fb75d07b564b13faea1b9a7530cb669db08e43134bbff9", size = 300704, upload-time = "2026-11-12T13:25:47.475Z" },
+    { url = "https://files.pythonhosted.org/packages/51/af/7e6590a562ed6ac0fe9f35cdb24958d754fdf84021cec536037f3ae7dd02/cyclopts-5.5.0-py3-none-any.whl", hash = "sha256:ddc58a8e2035292ec7b81666ff07c4b32a4118ad4d7ef55593b91a02b6e34754", size = 300703, upload-time = "2026-11-14T02:13:35.244Z" },
 ]
 
 [[package]]
@@ -161,16 +161,16 @@ wheels = [
 
 [[package]]
 name = "library-skills"
-version = "0.0.20"
+version = "0.0.21"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pyyaml" },
     { name = "rich-toolkit" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/70/52/9679e8d3446e163f7a172c7c68d3d217678ce40594ca8029049d79f3344c/library_skills-0.0.20.tar.gz", hash = "sha256:6d5292db837ffd651a82552c59920f427ff1bbae7fe6b505a7f2c2fdaac04df5", size = 46110, upload-time = "2026-11-10T19:32:45.075Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/58/c3/5874a194e9591b77b316f1cf4068b5b34abcf2a09e8e40915e89e6346e20/library_skills-0.0.21.tar.gz", hash = "sha256:285b7d8b8f5d772478ac89ed6ca9fa45ca0ac695e2425a43df68930f47a59004", size = 45965, upload-time = "2026-11-13T16:37:48.696Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/52/72/02e8a6da6a4b14921df880657274e42b0fb8fb0bab2c765a0a3b172cd2c7/library_skills-0.0.20-py3-none-any.whl", hash = "sha256:c72c7498ab8d105af0c36c4a52fa978e5ccdc646d6f786f3eef358e84a8e42d3", size = 25039, upload-time = "2026-11-10T19:32:44.094Z" },
+    { url = "https://files.pythonhosted.org/packages/ba/f9/9b614f03edbad5a0ba9357da612ebb9fd37a59844cb68e743f8681655f05/library_skills-0.0.21-py3-none-any.whl", hash = "sha256:c0a5b79afcfcb922e004e757bda25c88b04ad8945d826b9d939b474b7bf5fabe", size = 24901, upload-time = "2026-11-13T16:37:47.802Z" },
 ]
 
 [[package]]
@@ -439,13 +439,13 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "cyclopts", specifier = "==5.4.2" },
+    { name = "cyclopts", specifier = "==5.5.0" },
     { name = "trcks", specifier = "==0.9.1" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "library-skills", specifier = "==0.0.20" },
+    { name = "library-skills", specifier = "==0.0.21" },
     { name = "pre-commit", specifier = "==4.7.0" },
     { name = "pyrefly", specifier = "==1.4.1" },
     { name = "pytest", specifier = "==9.2.0" },
